@@ -212,7 +212,7 @@ function DocPage() {
 
             <h2>Taggar</h2>
             <div className="not-prose flex flex-wrap gap-2">
-              {doc.tags.map((t) => (
+              {doc.tags.map((t: string) => (
                 <Badge key={t} variant="secondary" className="gap-1">
                   <Tag className="h-3 w-3" />
                   {t}
