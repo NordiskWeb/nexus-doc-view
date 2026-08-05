@@ -201,7 +201,7 @@ function DocPage() {
           <section className="mt-14">
             <h2 className="font-display text-2xl font-semibold">Taggar</h2>
             <div className="mt-4 flex flex-wrap gap-2">
-              {doc.tags.map((t) => (
+              {doc.tags.map((t: string) => (
                 <Badge key={t} variant="secondary" className="gap-1">
                   <Tag className="h-3 w-3" />
                   {t}
