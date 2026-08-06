@@ -84,6 +84,27 @@ export function AppSidebar() {
           <SidebarGroupLabel>Bibliotek</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
+              <SidebarMenuItem>
+                <SidebarMenuButton asChild isActive={isActive("/favoriter")}>
+                  <Link to="/favoriter">
+                    <Star />
+                    <span>Favoriter</span>
+                    {favorites.length > 0 && (
+                      <span className="ml-auto rounded-full bg-sidebar-accent px-1.5 py-0.5 text-[10px] font-medium group-data-[collapsible=icon]:hidden">
+                        {favorites.length}
+                      </span>
+                    )}
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton asChild isActive={isActive("/inbjudningar")}>
+                  <Link to="/inbjudningar">
+                    <UserPlus />
+                    <span>Inbjudna användare</span>
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
               {library.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton asChild>
@@ -95,6 +116,7 @@ export function AppSidebar() {
                 </SidebarMenuItem>
               ))}
             </SidebarMenu>
+
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
