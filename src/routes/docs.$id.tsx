@@ -17,6 +17,8 @@ import {
 } from "lucide-react";
 
 import { AppShell } from "@/components/app-shell";
+import { FavoriteButton } from "@/components/favorite-button";
+
 import { Badge } from "@/components/ui/badge";
 import {
   Breadcrumb,
@@ -147,6 +149,7 @@ function DocPage() {
               Uppdaterad {doc.updatedAt}
             </span>
             <div className="ml-auto flex items-center gap-2">
+              <FavoriteButton id={doc.id} title={doc.title} withLabel />
               <Button variant="outline" size="sm" className="gap-2">
                 <Printer className="h-4 w-4" />
                 Skriv ut
@@ -160,6 +163,7 @@ function DocPage() {
                 Redigera
               </Button>
             </div>
+
           </div>
 
           <Separator className="my-8" />

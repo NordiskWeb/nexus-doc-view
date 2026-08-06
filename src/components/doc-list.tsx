@@ -3,6 +3,8 @@ import { ChevronRight, LayoutGrid, List, PlusCircle, SlidersHorizontal } from "l
 import { useState } from "react";
 
 import { AppShell } from "@/components/app-shell";
+import { FavoriteButton } from "@/components/favorite-button";
+
 import { Badge } from "@/components/ui/badge";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
 import { Button } from "@/components/ui/button";
@@ -213,10 +215,14 @@ export function DocList({ type }: Props) {
                       {doc.updatedAt}
                     </TableCell>
                     <TableCell>
-                      <Link to="/docs/$id" params={{ id: doc.id }}>
-                        <ChevronRight className="h-4 w-4 text-muted-foreground transition-transform group-hover:translate-x-1 group-hover:text-foreground" />
-                      </Link>
+                      <div className="flex items-center justify-end gap-1">
+                        <FavoriteButton id={doc.id} title={doc.title} />
+                        <Link to="/docs/$id" params={{ id: doc.id }}>
+                          <ChevronRight className="h-4 w-4 text-muted-foreground transition-transform group-hover:translate-x-1 group-hover:text-foreground" />
+                        </Link>
+                      </div>
                     </TableCell>
+
                   </TableRow>
                 ))}
               </TableBody>
@@ -250,7 +256,11 @@ function DocCard({ doc }: { doc: Doc }) {
             >
               {doc.category}
             </Badge>
-            <span className="text-xs text-muted-foreground">{doc.updatedAt}</span>
+            <div className="flex items-center gap-1">
+              <span className="text-xs text-muted-foreground">{doc.updatedAt}</span>
+              <FavoriteButton id={doc.id} title={doc.title} className="h-7 w-7" />
+            </div>
+
           </div>
           <h3 className="font-display text-lg font-semibold leading-snug group-hover:text-primary">
             {doc.title}
