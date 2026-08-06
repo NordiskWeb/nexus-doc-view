@@ -256,7 +256,11 @@ function DocCard({ doc }: { doc: Doc }) {
             >
               {doc.category}
             </Badge>
-            <span className="text-xs text-muted-foreground">{doc.updatedAt}</span>
+            <div className="flex items-center gap-1">
+              <span className="text-xs text-muted-foreground">{doc.updatedAt}</span>
+              <FavoriteButton id={doc.id} title={doc.title} className="h-7 w-7" />
+            </div>
+
           </div>
           <h3 className="font-display text-lg font-semibold leading-snug group-hover:text-primary">
             {doc.title}
