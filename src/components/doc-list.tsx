@@ -213,10 +213,14 @@ export function DocList({ type }: Props) {
                       {doc.updatedAt}
                     </TableCell>
                     <TableCell>
-                      <Link to="/docs/$id" params={{ id: doc.id }}>
-                        <ChevronRight className="h-4 w-4 text-muted-foreground transition-transform group-hover:translate-x-1 group-hover:text-foreground" />
-                      </Link>
+                      <div className="flex items-center justify-end gap-1">
+                        <FavoriteButton id={doc.id} title={doc.title} />
+                        <Link to="/docs/$id" params={{ id: doc.id }}>
+                          <ChevronRight className="h-4 w-4 text-muted-foreground transition-transform group-hover:translate-x-1 group-hover:text-foreground" />
+                        </Link>
+                      </div>
                     </TableCell>
+
                   </TableRow>
                 ))}
               </TableBody>
