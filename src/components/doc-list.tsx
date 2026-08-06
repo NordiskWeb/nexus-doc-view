@@ -3,6 +3,8 @@ import { ChevronRight, LayoutGrid, List, PlusCircle, SlidersHorizontal } from "l
 import { useState } from "react";
 
 import { AppShell } from "@/components/app-shell";
+import { FavoriteButton } from "@/components/favorite-button";
+
 import { Badge } from "@/components/ui/badge";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
 import { Button } from "@/components/ui/button";
