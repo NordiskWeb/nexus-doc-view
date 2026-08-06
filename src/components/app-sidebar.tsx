@@ -9,6 +9,7 @@ import {
   Settings,
   Star,
   Clock,
+  UserPlus,
 } from "lucide-react";
 
 import {
@@ -23,6 +24,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
+import { useFavorites } from "@/hooks/use-favorites";
 
 const main = [
   { title: "Översikt", url: "/", icon: Home },
@@ -33,14 +35,15 @@ const main = [
 
 const library = [
   { title: "Senast uppdaterade", url: "/support", icon: Clock },
-  { title: "Favoriter", url: "/support", icon: Star },
   { title: "Alla dokument", url: "/support", icon: FileText },
 ];
 
 export function AppSidebar() {
   const currentPath = useRouterState({ select: (s) => s.location.pathname });
+  const { favorites } = useFavorites();
   const isActive = (path: string) =>
     path === "/" ? currentPath === "/" : currentPath.startsWith(path);
+
 
   return (
     <Sidebar collapsible="icon">

@@ -11,6 +11,8 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SupportRouteImport } from './routes/support'
 import { Route as NewRouteImport } from './routes/new'
+import { Route as InbjudningarRouteImport } from './routes/inbjudningar'
+import { Route as FavoriterRouteImport } from './routes/favoriter'
 import { Route as DriftRouteImport } from './routes/drift'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as DocsIdRouteImport } from './routes/docs.$id'
@@ -23,6 +25,16 @@ const SupportRoute = SupportRouteImport.update({
 const NewRoute = NewRouteImport.update({
   id: '/new',
   path: '/new',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InbjudningarRoute = InbjudningarRouteImport.update({
+  id: '/inbjudningar',
+  path: '/inbjudningar',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FavoriterRoute = FavoriterRouteImport.update({
+  id: '/favoriter',
+  path: '/favoriter',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DriftRoute = DriftRouteImport.update({
@@ -44,6 +56,8 @@ const DocsIdRoute = DocsIdRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/drift': typeof DriftRoute
+  '/favoriter': typeof FavoriterRoute
+  '/inbjudningar': typeof InbjudningarRoute
   '/new': typeof NewRoute
   '/support': typeof SupportRoute
   '/docs/$id': typeof DocsIdRoute
@@ -51,6 +65,8 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/drift': typeof DriftRoute
+  '/favoriter': typeof FavoriterRoute
+  '/inbjudningar': typeof InbjudningarRoute
   '/new': typeof NewRoute
   '/support': typeof SupportRoute
   '/docs/$id': typeof DocsIdRoute
@@ -59,21 +75,47 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/drift': typeof DriftRoute
+  '/favoriter': typeof FavoriterRoute
+  '/inbjudningar': typeof InbjudningarRoute
   '/new': typeof NewRoute
   '/support': typeof SupportRoute
   '/docs/$id': typeof DocsIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/drift' | '/new' | '/support' | '/docs/$id'
+  fullPaths:
+    | '/'
+    | '/drift'
+    | '/favoriter'
+    | '/inbjudningar'
+    | '/new'
+    | '/support'
+    | '/docs/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/drift' | '/new' | '/support' | '/docs/$id'
-  id: '__root__' | '/' | '/drift' | '/new' | '/support' | '/docs/$id'
+  to:
+    | '/'
+    | '/drift'
+    | '/favoriter'
+    | '/inbjudningar'
+    | '/new'
+    | '/support'
+    | '/docs/$id'
+  id:
+    | '__root__'
+    | '/'
+    | '/drift'
+    | '/favoriter'
+    | '/inbjudningar'
+    | '/new'
+    | '/support'
+    | '/docs/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   DriftRoute: typeof DriftRoute
+  FavoriterRoute: typeof FavoriterRoute
+  InbjudningarRoute: typeof InbjudningarRoute
   NewRoute: typeof NewRoute
   SupportRoute: typeof SupportRoute
   DocsIdRoute: typeof DocsIdRoute
@@ -93,6 +135,20 @@ declare module '@tanstack/react-router' {
       path: '/new'
       fullPath: '/new'
       preLoaderRoute: typeof NewRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/inbjudningar': {
+      id: '/inbjudningar'
+      path: '/inbjudningar'
+      fullPath: '/inbjudningar'
+      preLoaderRoute: typeof InbjudningarRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/favoriter': {
+      id: '/favoriter'
+      path: '/favoriter'
+      fullPath: '/favoriter'
+      preLoaderRoute: typeof FavoriterRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/drift': {
@@ -122,6 +178,8 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   DriftRoute: DriftRoute,
+  FavoriterRoute: FavoriterRoute,
+  InbjudningarRoute: InbjudningarRoute,
   NewRoute: NewRoute,
   SupportRoute: SupportRoute,
   DocsIdRoute: DocsIdRoute,
@@ -129,13 +187,3 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
