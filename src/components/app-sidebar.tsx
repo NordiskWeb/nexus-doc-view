@@ -10,6 +10,7 @@ import {
   Star,
   Clock,
   UserPlus,
+  Share2,
 } from "lucide-react";
 
 import {
@@ -30,6 +31,7 @@ const main = [
   { title: "Översikt", url: "/", icon: Home },
   { title: "Support", url: "/support", icon: LifeBuoy },
   { title: "Driftdokumentation", url: "/drift", icon: Server },
+  { title: "Relationer", url: "/relationer", icon: Share2 },
   { title: "Skapa ny", url: "/new", icon: PlusCircle },
 ];
 
