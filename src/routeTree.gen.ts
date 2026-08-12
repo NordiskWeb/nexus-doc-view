@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SupportRouteImport } from './routes/support'
+import { Route as RelationerRouteImport } from './routes/relationer'
 import { Route as NewRouteImport } from './routes/new'
 import { Route as InbjudningarRouteImport } from './routes/inbjudningar'
 import { Route as FavoriterRouteImport } from './routes/favoriter'
@@ -20,6 +21,11 @@ import { Route as DocsIdRouteImport } from './routes/docs.$id'
 const SupportRoute = SupportRouteImport.update({
   id: '/support',
   path: '/support',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RelationerRoute = RelationerRouteImport.update({
+  id: '/relationer',
+  path: '/relationer',
   getParentRoute: () => rootRouteImport,
 } as any)
 const NewRoute = NewRouteImport.update({
@@ -59,6 +65,7 @@ export interface FileRoutesByFullPath {
   '/favoriter': typeof FavoriterRoute
   '/inbjudningar': typeof InbjudningarRoute
   '/new': typeof NewRoute
+  '/relationer': typeof RelationerRoute
   '/support': typeof SupportRoute
   '/docs/$id': typeof DocsIdRoute
 }
@@ -68,6 +75,7 @@ export interface FileRoutesByTo {
   '/favoriter': typeof FavoriterRoute
   '/inbjudningar': typeof InbjudningarRoute
   '/new': typeof NewRoute
+  '/relationer': typeof RelationerRoute
   '/support': typeof SupportRoute
   '/docs/$id': typeof DocsIdRoute
 }
@@ -78,6 +86,7 @@ export interface FileRoutesById {
   '/favoriter': typeof FavoriterRoute
   '/inbjudningar': typeof InbjudningarRoute
   '/new': typeof NewRoute
+  '/relationer': typeof RelationerRoute
   '/support': typeof SupportRoute
   '/docs/$id': typeof DocsIdRoute
 }
@@ -89,6 +98,7 @@ export interface FileRouteTypes {
     | '/favoriter'
     | '/inbjudningar'
     | '/new'
+    | '/relationer'
     | '/support'
     | '/docs/$id'
   fileRoutesByTo: FileRoutesByTo
@@ -98,6 +108,7 @@ export interface FileRouteTypes {
     | '/favoriter'
     | '/inbjudningar'
     | '/new'
+    | '/relationer'
     | '/support'
     | '/docs/$id'
   id:
@@ -107,6 +118,7 @@ export interface FileRouteTypes {
     | '/favoriter'
     | '/inbjudningar'
     | '/new'
+    | '/relationer'
     | '/support'
     | '/docs/$id'
   fileRoutesById: FileRoutesById
@@ -117,6 +129,7 @@ export interface RootRouteChildren {
   FavoriterRoute: typeof FavoriterRoute
   InbjudningarRoute: typeof InbjudningarRoute
   NewRoute: typeof NewRoute
+  RelationerRoute: typeof RelationerRoute
   SupportRoute: typeof SupportRoute
   DocsIdRoute: typeof DocsIdRoute
 }
@@ -128,6 +141,13 @@ declare module '@tanstack/react-router' {
       path: '/support'
       fullPath: '/support'
       preLoaderRoute: typeof SupportRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/relationer': {
+      id: '/relationer'
+      path: '/relationer'
+      fullPath: '/relationer'
+      preLoaderRoute: typeof RelationerRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/new': {
@@ -181,6 +201,7 @@ const rootRouteChildren: RootRouteChildren = {
   FavoriterRoute: FavoriterRoute,
   InbjudningarRoute: InbjudningarRoute,
   NewRoute: NewRoute,
+  RelationerRoute: RelationerRoute,
   SupportRoute: SupportRoute,
   DocsIdRoute: DocsIdRoute,
 }
