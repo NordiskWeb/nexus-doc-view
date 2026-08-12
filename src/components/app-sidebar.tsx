@@ -10,6 +10,7 @@ import {
   Star,
   Clock,
   UserPlus,
+  Share2,
 } from "lucide-react";
 
 import {
