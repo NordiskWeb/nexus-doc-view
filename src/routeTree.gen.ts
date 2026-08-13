@@ -15,6 +15,7 @@ import { Route as NewRouteImport } from './routes/new'
 import { Route as InbjudningarRouteImport } from './routes/inbjudningar'
 import { Route as FavoriterRouteImport } from './routes/favoriter'
 import { Route as DriftRouteImport } from './routes/drift'
+import { Route as CertifikatRouteImport } from './routes/certifikat'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as DocsIdRouteImport } from './routes/docs.$id'
 
@@ -48,6 +49,11 @@ const DriftRoute = DriftRouteImport.update({
   path: '/drift',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CertifikatRoute = CertifikatRouteImport.update({
+  id: '/certifikat',
+  path: '/certifikat',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -61,6 +67,7 @@ const DocsIdRoute = DocsIdRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/certifikat': typeof CertifikatRoute
   '/drift': typeof DriftRoute
   '/favoriter': typeof FavoriterRoute
   '/inbjudningar': typeof InbjudningarRoute
@@ -71,6 +78,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/certifikat': typeof CertifikatRoute
   '/drift': typeof DriftRoute
   '/favoriter': typeof FavoriterRoute
   '/inbjudningar': typeof InbjudningarRoute
@@ -82,6 +90,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/certifikat': typeof CertifikatRoute
   '/drift': typeof DriftRoute
   '/favoriter': typeof FavoriterRoute
   '/inbjudningar': typeof InbjudningarRoute
@@ -94,6 +103,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/certifikat'
     | '/drift'
     | '/favoriter'
     | '/inbjudningar'
@@ -104,6 +114,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/certifikat'
     | '/drift'
     | '/favoriter'
     | '/inbjudningar'
@@ -114,6 +125,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/certifikat'
     | '/drift'
     | '/favoriter'
     | '/inbjudningar'
@@ -125,6 +137,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CertifikatRoute: typeof CertifikatRoute
   DriftRoute: typeof DriftRoute
   FavoriterRoute: typeof FavoriterRoute
   InbjudningarRoute: typeof InbjudningarRoute
@@ -178,6 +191,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DriftRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/certifikat': {
+      id: '/certifikat'
+      path: '/certifikat'
+      fullPath: '/certifikat'
+      preLoaderRoute: typeof CertifikatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -197,6 +217,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CertifikatRoute: CertifikatRoute,
   DriftRoute: DriftRoute,
   FavoriterRoute: FavoriterRoute,
   InbjudningarRoute: InbjudningarRoute,
