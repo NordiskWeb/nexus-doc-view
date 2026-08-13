@@ -11,6 +11,8 @@ import {
   Clock,
   UserPlus,
   Share2,
+  ShieldCheck,
+
 } from "lucide-react";
 
 import {
