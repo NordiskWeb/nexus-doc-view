@@ -11,6 +11,8 @@ import {
   Clock,
   UserPlus,
   Share2,
+  ShieldCheck,
+
 } from "lucide-react";
 
 import {
@@ -32,8 +34,10 @@ const main = [
   { title: "Support", url: "/support", icon: LifeBuoy },
   { title: "Driftdokumentation", url: "/drift", icon: Server },
   { title: "Relationer", url: "/relationer", icon: Share2 },
+  { title: "Certifikat", url: "/certifikat", icon: ShieldCheck },
   { title: "Skapa ny", url: "/new", icon: PlusCircle },
 ];
+
 
 const library = [
   { title: "Senast uppdaterade", url: "/support", icon: Clock },
