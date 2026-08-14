@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as UtkastRouteImport } from './routes/utkast'
 import { Route as SupportRouteImport } from './routes/support'
 import { Route as RelationerRouteImport } from './routes/relationer'
 import { Route as NewRouteImport } from './routes/new'
@@ -19,6 +20,11 @@ import { Route as CertifikatRouteImport } from './routes/certifikat'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as DocsIdRouteImport } from './routes/docs.$id'
 
+const UtkastRoute = UtkastRouteImport.update({
+  id: '/utkast',
+  path: '/utkast',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SupportRoute = SupportRouteImport.update({
   id: '/support',
   path: '/support',
@@ -74,6 +80,7 @@ export interface FileRoutesByFullPath {
   '/new': typeof NewRoute
   '/relationer': typeof RelationerRoute
   '/support': typeof SupportRoute
+  '/utkast': typeof UtkastRoute
   '/docs/$id': typeof DocsIdRoute
 }
 export interface FileRoutesByTo {
@@ -85,6 +92,7 @@ export interface FileRoutesByTo {
   '/new': typeof NewRoute
   '/relationer': typeof RelationerRoute
   '/support': typeof SupportRoute
+  '/utkast': typeof UtkastRoute
   '/docs/$id': typeof DocsIdRoute
 }
 export interface FileRoutesById {
@@ -97,6 +105,7 @@ export interface FileRoutesById {
   '/new': typeof NewRoute
   '/relationer': typeof RelationerRoute
   '/support': typeof SupportRoute
+  '/utkast': typeof UtkastRoute
   '/docs/$id': typeof DocsIdRoute
 }
 export interface FileRouteTypes {
@@ -110,6 +119,7 @@ export interface FileRouteTypes {
     | '/new'
     | '/relationer'
     | '/support'
+    | '/utkast'
     | '/docs/$id'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -121,6 +131,7 @@ export interface FileRouteTypes {
     | '/new'
     | '/relationer'
     | '/support'
+    | '/utkast'
     | '/docs/$id'
   id:
     | '__root__'
@@ -132,6 +143,7 @@ export interface FileRouteTypes {
     | '/new'
     | '/relationer'
     | '/support'
+    | '/utkast'
     | '/docs/$id'
   fileRoutesById: FileRoutesById
 }
@@ -144,11 +156,19 @@ export interface RootRouteChildren {
   NewRoute: typeof NewRoute
   RelationerRoute: typeof RelationerRoute
   SupportRoute: typeof SupportRoute
+  UtkastRoute: typeof UtkastRoute
   DocsIdRoute: typeof DocsIdRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/utkast': {
+      id: '/utkast'
+      path: '/utkast'
+      fullPath: '/utkast'
+      preLoaderRoute: typeof UtkastRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/support': {
       id: '/support'
       path: '/support'
@@ -224,6 +244,7 @@ const rootRouteChildren: RootRouteChildren = {
   NewRoute: NewRoute,
   RelationerRoute: RelationerRoute,
   SupportRoute: SupportRoute,
+  UtkastRoute: UtkastRoute,
   DocsIdRoute: DocsIdRoute,
 }
 export const routeTree = rootRouteImport
