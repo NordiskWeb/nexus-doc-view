@@ -6,6 +6,8 @@ import {
   Server,
   PlusCircle,
   FileText,
+  FileEdit,
+
   Settings,
   Star,
   Clock,
@@ -104,6 +106,14 @@ export function AppSidebar() {
                 </SidebarMenuButton>
               </SidebarMenuItem>
               <SidebarMenuItem>
+                <SidebarMenuButton asChild isActive={isActive("/utkast")}>
+                  <Link to="/utkast">
+                    <FileEdit />
+                    <span>Utkast</span>
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+              <SidebarMenuItem>
                 <SidebarMenuButton asChild isActive={isActive("/inbjudningar")}>
                   <Link to="/inbjudningar">
                     <UserPlus />
@@ -111,6 +121,7 @@ export function AppSidebar() {
                   </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
+
               {library.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton asChild>
