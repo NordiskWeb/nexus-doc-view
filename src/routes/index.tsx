@@ -227,24 +227,21 @@ function CategoryCard({
   return (
     <Link
       to={to}
-      className={`group relative flex flex-col gap-5 overflow-hidden rounded-2xl border bg-gradient-to-br p-6 transition-all hover:shadow-elegant md:p-8 ${toneClass}`}
+      className={`group relative flex items-center gap-4 overflow-hidden rounded-xl border bg-gradient-to-br p-4 transition-all hover:shadow-elegant md:p-5 ${toneClass}`}
     >
-      <div className="flex items-start justify-between">
-        <div className={`flex h-12 w-12 items-center justify-center rounded-xl ${iconBg} shadow-lg`}>
-          <Icon className="h-6 w-6" />
+      <div className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-lg ${iconBg} shadow-lg`}>
+        <Icon className="h-5 w-5" />
+      </div>
+      <div className="min-w-0 flex-1">
+        <div className="flex items-center gap-2">
+          <h2 className="font-display text-lg font-semibold">{title}</h2>
+          <Badge variant="outline" className="bg-background/60 text-[10px] backdrop-blur">
+            {count} dokument
+          </Badge>
         </div>
-        <Badge variant="outline" className="bg-background/60 backdrop-blur">
-          {count} dokument
-        </Badge>
+        <p className="mt-0.5 text-xs text-muted-foreground md:text-sm">{description}</p>
       </div>
-      <div>
-        <h2 className="font-display text-2xl font-semibold">{title}</h2>
-        <p className="mt-2 text-sm text-muted-foreground md:text-base">{description}</p>
-      </div>
-      <div className="flex items-center gap-2 text-sm font-medium text-foreground/80 transition-colors group-hover:text-foreground">
-        Öppna {title.toLowerCase()}
-        <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-      </div>
+      <ArrowRight className="h-4 w-4 shrink-0 text-foreground/60 transition-transform group-hover:translate-x-1 group-hover:text-foreground" />
     </Link>
   );
 }
