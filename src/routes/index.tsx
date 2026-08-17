@@ -44,23 +44,23 @@ function Home() {
           className="pointer-events-none absolute inset-0"
           style={{ background: "var(--gradient-hero)" }}
         />
-        <div className="relative mx-auto max-w-5xl px-4 py-16 text-center md:py-24">
-          <Badge variant="secondary" className="mb-6 gap-1.5 rounded-full px-3 py-1">
+        <div className="relative mx-auto max-w-5xl px-4 py-10 text-center md:py-16">
+          <Badge variant="secondary" className="mb-4 gap-1.5 rounded-full px-3 py-1">
             <Sparkles className="h-3 w-3" />
             Allt på ett ställe
           </Badge>
-          <h1 className="font-display text-4xl font-semibold tracking-tight md:text-6xl">
+          <h1 className="font-display text-3xl font-semibold tracking-tight md:text-5xl">
             Dokumentation som
-            <span className="ml-3 bg-gradient-to-r from-primary to-primary-glow bg-clip-text text-transparent">
+            <span className="ml-2 bg-gradient-to-r from-primary to-primary-glow bg-clip-text text-transparent">
               flyter snabbt.
             </span>
           </h1>
-          <p className="mx-auto mt-5 max-w-2xl text-balance text-base text-muted-foreground md:text-lg">
+          <p className="mx-auto mt-4 max-w-2xl text-balance text-sm text-muted-foreground md:text-base">
             Hitta svar i support- och driftdokumentationen direkt – på ett ställe.
-            Skapa, dela och håll all kunskap aktuell med en plattform byggd för moderna team.
+            Skapa, dela och håll all kunskap aktuell.
           </p>
 
-          <div className="mx-auto mt-10 max-w-2xl">
+          <div className="mx-auto mt-6 max-w-2xl">
             <GlobalSearch size="hero" placeholder="Sök i Support och Driftdokumentation..." />
             <div className="mt-3 flex flex-wrap items-center justify-center gap-2 text-xs text-muted-foreground">
               <span>Försök med:</span>
@@ -78,14 +78,14 @@ function Home() {
       </section>
 
       {/* Two big cards */}
-      <section className="mx-auto max-w-6xl px-4 py-12 md:py-16">
-        <div className="grid gap-5 md:grid-cols-2">
+      <section className="mx-auto max-w-6xl px-4 py-8 md:py-10">
+        <div className="grid gap-4 md:grid-cols-2">
           <CategoryCard
             to="/support"
             tone="support"
             icon={LifeBuoy}
             title="Support"
-            description="Guider, felsökning och rutiner för IT-supporten. Allt från lösenord till skrivare."
+            description="Guider, felsökning och rutiner för IT-supporten."
             count={mockDocs.filter((d) => d.type === "support").length}
           />
           <CategoryCard
@@ -93,65 +93,65 @@ function Home() {
             tone="drift"
             icon={Server}
             title="Driftdokumentation"
-            description="Servrar, infrastruktur, IP-adresser, åtkomst och driftansvar per kommun."
+            description="Servrar, infrastruktur, IP-adresser och driftansvar per kommun."
             count={mockDocs.filter((d) => d.type === "drift").length}
           />
         </div>
 
-        <div className="mt-4 flex flex-wrap gap-3">
-          <Button asChild variant="outline" className="gap-2">
+        <div className="mt-4 flex flex-wrap gap-2">
+          <Button asChild variant="outline" size="sm" className="gap-2">
             <Link to="/new">
               <PlusCircle className="h-4 w-4" />
-              Skapa ny supportdokumentation
+              Ny supportdokumentation
             </Link>
           </Button>
-          <Button asChild variant="outline" className="gap-2">
+          <Button asChild variant="outline" size="sm" className="gap-2">
             <Link to="/new">
               <PlusCircle className="h-4 w-4" />
-              Skapa ny driftdokumentation
+              Ny driftdokumentation
             </Link>
           </Button>
         </div>
       </section>
 
       {/* Recent + popular */}
-      <section className="mx-auto max-w-6xl px-4 pb-16">
-        <div className="grid gap-8 lg:grid-cols-3">
+      <section className="mx-auto max-w-6xl px-4 pb-12">
+        <div className="grid gap-6 lg:grid-cols-3">
           <div className="lg:col-span-2">
             <SectionHeader
               icon={Clock}
               title="Senast uppdaterade"
-              subtitle="De senaste ändringarna i din kunskapsbas."
+              subtitle="De senaste ändringarna i kunskapsbasen."
             />
-            <div className="mt-4 divide-y divide-border rounded-2xl border border-border bg-card">
+            <div className="mt-3 divide-y divide-border rounded-xl border border-border bg-card">
               {recent.map((doc) => (
                 <Link
                   key={doc.id}
                   to="/docs/$id"
                   params={{ id: doc.id }}
-                  className="group flex items-center gap-4 p-4 transition-colors hover:bg-accent/40"
+                  className="group flex items-center gap-3 p-3 transition-colors hover:bg-accent/40"
                 >
                   <div
-                    className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-lg ${
+                    className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-md ${
                       doc.type === "support"
                         ? "bg-support/10 text-support"
                         : "bg-drift/10 text-drift"
                     }`}
                   >
                     {doc.type === "support" ? (
-                      <LifeBuoy className="h-5 w-5" />
+                      <LifeBuoy className="h-4 w-4" />
                     ) : (
-                      <Server className="h-5 w-5" />
+                      <Server className="h-4 w-4" />
                     )}
                   </div>
                   <div className="min-w-0 flex-1">
                     <div className="flex items-center gap-2">
-                      <h3 className="truncate font-medium">{doc.title}</h3>
+                      <h3 className="truncate text-sm font-medium">{doc.title}</h3>
                       <Badge variant="outline" className="hidden text-[10px] sm:inline-flex">
                         {doc.category}
                       </Badge>
                     </div>
-                    <p className="mt-0.5 line-clamp-1 text-sm text-muted-foreground">
+                    <p className="line-clamp-1 text-xs text-muted-foreground">
                       {doc.excerpt}
                     </p>
                   </div>
@@ -168,9 +168,9 @@ function Home() {
             <SectionHeader
               icon={TrendingUp}
               title="Populärt"
-              subtitle="Mest besökta dokumenten den här veckan."
+              subtitle="Mest besökta den här veckan."
             />
-            <Card className="mt-4">
+            <Card className="mt-3">
               <CardContent className="p-2">
                 <ul className="divide-y divide-border">
                   {mockDocs.slice(0, 5).map((doc, i) => (
@@ -178,9 +178,9 @@ function Home() {
                       <Link
                         to="/docs/$id"
                         params={{ id: doc.id }}
-                        className="flex items-center gap-3 rounded-lg p-3 transition-colors hover:bg-accent/40"
+                        className="flex items-center gap-3 rounded-lg p-2 transition-colors hover:bg-accent/40"
                       >
-                        <span className="font-display text-xl font-semibold tabular-nums text-muted-foreground/60">
+                        <span className="font-display text-lg font-semibold tabular-nums text-muted-foreground/60">
                           0{i + 1}
                         </span>
                         <div className="min-w-0">
@@ -227,24 +227,21 @@ function CategoryCard({
   return (
     <Link
       to={to}
-      className={`group relative flex flex-col gap-5 overflow-hidden rounded-2xl border bg-gradient-to-br p-6 transition-all hover:shadow-elegant md:p-8 ${toneClass}`}
+      className={`group relative flex items-center gap-4 overflow-hidden rounded-xl border bg-gradient-to-br p-4 transition-all hover:shadow-elegant md:p-5 ${toneClass}`}
     >
-      <div className="flex items-start justify-between">
-        <div className={`flex h-12 w-12 items-center justify-center rounded-xl ${iconBg} shadow-lg`}>
-          <Icon className="h-6 w-6" />
+      <div className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-lg ${iconBg} shadow-lg`}>
+        <Icon className="h-5 w-5" />
+      </div>
+      <div className="min-w-0 flex-1">
+        <div className="flex items-center gap-2">
+          <h2 className="font-display text-lg font-semibold">{title}</h2>
+          <Badge variant="outline" className="bg-background/60 text-[10px] backdrop-blur">
+            {count} dokument
+          </Badge>
         </div>
-        <Badge variant="outline" className="bg-background/60 backdrop-blur">
-          {count} dokument
-        </Badge>
+        <p className="mt-0.5 text-xs text-muted-foreground md:text-sm">{description}</p>
       </div>
-      <div>
-        <h2 className="font-display text-2xl font-semibold">{title}</h2>
-        <p className="mt-2 text-sm text-muted-foreground md:text-base">{description}</p>
-      </div>
-      <div className="flex items-center gap-2 text-sm font-medium text-foreground/80 transition-colors group-hover:text-foreground">
-        Öppna {title.toLowerCase()}
-        <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-      </div>
+      <ArrowRight className="h-4 w-4 shrink-0 text-foreground/60 transition-transform group-hover:translate-x-1 group-hover:text-foreground" />
     </Link>
   );
 }
